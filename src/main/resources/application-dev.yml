@@ -1,0 +1,30 @@
+server:
+  port: 8088 # 设置端口号
+  servlet:
+    context-path: /shiro # 项目的访问路径
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver # 设置数据库驱动
+    url: jdbc:mysql://192.168.0.113:63306/permission_db?useSSL=false&serverTimezone=UTC # 设置数据库地址
+    username: root # 用户名
+    password: root # 密码
+
+  # jpa相关配置
+  jpa:
+    hibernate:
+      ddl-auto: update # 实体类修改后，会更新表，如果是 create 每次启动项目的时候都会删除数据重新建表
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl # 将实体类的驼峰命名转化为下划线
+    show-sql: true # 日志中打印sql
+    database: mysql # 数库类型为mysql
+    database-platform: org.hibernate.dialect.MariaDB10Dialect # 设置hibernate的数据库方言
+
+# spring boot 热部署配置
+  devtools:
+    restart:
+      enabled: false # 是否开启
+      additional-paths: src/java/main/ # 重启的目录，这个目录下的所有文件都需要restart
+      # 解决项目自动重启后，访问接口报404错误
+      poll-interval: 3000
+      quiet-period: 1000

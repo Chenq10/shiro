@@ -1,0 +1,4 @@
+# 启用开发配置文件
+spring:
+  profiles:
+    active: dev
